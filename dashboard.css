@@ -1,0 +1,171 @@
+/* assets/dashboard.css — Modern Elegant Dashboard Style */
+:root {
+  /* Tema warna baru */
+  --bg-1: #0f172a;
+  --bg-2: #1e293b;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-hover: rgba(255, 255, 255, 0.1);
+  --muted: #cbd5e1;
+  --accent: #14b8a6;
+  --accent-2: #06b6d4;
+  --danger: #ef4444;
+  --text: #f8fafc;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --radius: 18px;
+  --max-w: 1200px;
+  --gap: 24px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Global Reset */
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  max-width: var(--max-w);
+  margin: 50px auto;
+  padding: 24px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: calc(var(--gap) * 2);
+  animation: fadeIn 1s ease;
+}
+
+.header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.6rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.header p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Modules Grid */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--gap);
+  padding: 20px 0;
+}
+
+/* Module Cards */
+.module-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-20deg);
+  transition: 0.8s;
+}
+
+.module-card:hover::before {
+  left: 125%;
+}
+
+.module-card:hover {
+  transform: translateY(-6px);
+  background: var(--card-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Text in Cards */
+.module-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.module-card:hover .module-title {
+  color: var(--accent-2);
+}
+
+.module-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    margin: 30px auto;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .module-card {
+    padding: 24px;
+  }
+}
+
+/* Active Effect */
+.module-card:active {
+  transform: scale(0.98);
+}
+
+/* Hover Arrow */
+.module-title::after {
+  content: "→";
+  opacity: 0;
+  margin-left: 6px;
+  transition: all 0.3s ease;
+}
+
+.module-card:hover .module-title::after {
+  opacity: 1;
+  margin-left: 10px;
+}
